@@ -8,12 +8,12 @@ export default class SongList extends Component {
         this.state = {songs:[{id:'012345',name:'test',}]}
     }
     async componentDidMount(){
-        this.setState({songs:getAllSongs()})
+        this.setState({songs:await getAllSongs()})
 
     }
   render() {
     return (
-      <div>{this.state.songs.map((element) => {
+      <div>{this.state?.songs?.map((element) => {
         return <SongPreview key={element.id} song={element} goToSongPage={(id) => {console.log('hello');}} ></SongPreview>
       })}</div>
     )

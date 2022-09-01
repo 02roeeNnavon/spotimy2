@@ -14,7 +14,7 @@ export default function SongPreview(props) {
       <div className="row">
 
         <div className="col-4 p-0">
-          <img className="card-img col-12   m-0 p-0" src={song.imageUrl} alt={song.name} />
+          <img width={300} height={200} className="card-img col-12 m-0 p-0" src={song.imageurl} alt={song.name} />
         </div>
 
         <div className="col-4 ">
@@ -25,7 +25,7 @@ export default function SongPreview(props) {
           <button
             className="btn btn-dark w-100pc"
             onClick={() => {
-                playSong(song.songUrl);
+                playSong(song.songurl);
             }}
             >
             Play
