@@ -2,30 +2,30 @@ import React from "react";
 import { playSong } from "../Services/utils";
 
 export default function SongPreview(props) {
-  const { id, name, singer, genre, imageUrl, songUrl, goToSongPage } = props;
+  const {song, goToSongPage } = props;
   return (
     <div className="container my-2  bg-secondary p-4 rounded">
       <div className="row">
         <h2 className="text-18pt text-center col-12 bg-dark text-white m-0 my-1 p-1">
-          {name}
+          {song.name}
         </h2>
       </div>
 
       <div className="row">
 
         <div className="col-4 p-0">
-          <img className="card-img col-12   m-0 p-0" src={imageUrl} alt={name} />
+          <img className="card-img col-12   m-0 p-0" src={song.imageUrl} alt={song.name} />
         </div>
 
         <div className="col-4 ">
            
-          <p className="text-center col-12 bg-dark text-white m-0 my-1 p-1">{singer}</p>
+          <p className="text-center col-12 bg-dark text-white m-0 my-1 p-1">{song.singer}</p>
                 
-          <p className="text-center col-12 bg-dark text-white m-0 my-1 p-1">{genre}</p>
+          <p className="text-center col-12 bg-dark text-white m-0 my-1 p-1">{song.genre}</p>
           <button
             className="btn btn-dark w-100pc"
             onClick={() => {
-                playSong(songUrl);
+                playSong(song.songUrl);
             }}
             >
             Play
@@ -49,7 +49,7 @@ export default function SongPreview(props) {
         <button
           className="col-12 my-1 btn btn-dark"
           onClick={() => {
-            goToSongPage(id);
+            goToSongPage(song.id);
           }}
         >
           Song Page
