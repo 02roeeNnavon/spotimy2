@@ -25,7 +25,7 @@ export default function SongPreview(props) {
           <button
             className="btn btn-dark w-100pc"
             onClick={() => {
-                playSong(song.songUrl);
+                playSong(song.songurl);
             }}
             >
             Play
