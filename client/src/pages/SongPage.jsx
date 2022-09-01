@@ -25,6 +25,7 @@ class SongPage extends Component {
     progressInterval;
 
     onPausePlay = () => {
+        console.log(this.state.audio);
         if (this.state.audio.paused) {
             this.state.audio.play();
             this.setState({ isPlaying: true });
@@ -40,29 +41,29 @@ class SongPage extends Component {
 
     componentDidMount = () => {
         let songId = this.props.params.id;
+        console.log(1);
         songService.getSongById(songId).then(song => {
-            this.setState({song: song});
-            console.log(song);
-        }, () => {
-            this.setState(
-                {
-                    progress: 0,
-                    isPlaying: false,
-                    audio: new Audio(this.state.song.songurl),
-                },
-                () => {
-                    this.progressInterval = window.setInterval(() => {
-                        this.setState({
-                            progress:
-                                100 *
-                                (this.state.audio.currentTime /
-                                    this.state.audio.duration),
-                        });
-                    }, 100);
-                }
-            );
+            this.setState({song: song}, () => {
+                this.setState(
+                    {
+                        progress: 0,
+                        isPlaying: false,
+                        audio: new Audio(this.state.song.songurl),
+                    },
+                    () => {
+                        this.progressInterval = window.setInterval(() => {
+                            this.setState({
+                                progress:
+                                    100 *
+                                    (this.state.audio.currentTime /
+                                        this.state.audio.duration),
+                            });
+                        }, 100);
+                    }
+                );
+            })
         });
-    };
+    }
 
     render() {
         return (
