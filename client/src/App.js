@@ -1,10 +1,19 @@
 import React from "react";
-import SongPreview from "./components/SongPreview";
-import Home from "./pages/Home";
+import SiteHeader from "./components/SiteHeader";
+import SiteFooter from "./components/SiteFooter";
+import { Routes, Route } from "react-router-dom";
+import About from "./pages/About";
 
 function App() {
   return (
-    <Home></Home>
+    <div>
+      <SiteHeader page="Home" />
+      <Routes>
+        <Route to="About" element={<About />} />
+      </Routes>
+      
+      <SiteFooter />
+    </div>
   );
 }
 
