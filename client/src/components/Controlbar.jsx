@@ -9,7 +9,6 @@ export default class extends Component {
                     {this.props.title}
                 </h2>
                 <div className="d-flex justify-content-around w-100">
-                    <button className="btn btn-dark">Prev</button>
                     <button className="btn btn-dark" onClick={this.props.onPausePlay}>
                         {this.props.isPlaying ? (
                             <FaPauseCircle />
@@ -17,11 +16,12 @@ export default class extends Component {
                             <FaPlayCircle />
                         )}
                     </button>
-                    <button className="btn btn-dark">Next</button>
                 </div>
                 <input
                     className="w-100 bg-dark"
                     type="range"
+                    disabled={true}
+                    value={this.props.progress}
                     min="1"
                     max="100"
                 ></input>
