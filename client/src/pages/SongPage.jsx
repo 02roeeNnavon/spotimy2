@@ -2,13 +2,23 @@ import React, { Component } from "react";
 import Controlbar from "../components/Controlbar";
 
 export default class SongPage extends Component {
-    render() {
-        this.componentDidMount = () => {
-            let audio = new Audio(this.props.song.songUrl);
+    firstTimePlayed = true;
+    onPausePlay = () => {
+        let audio;
+        if(this.firstTimePlayed) {
+            this.firstTimePlayed = false;
+            audio = new Audio(this.props.song.songurl);
             audio.play();
-            this.setState({ audio: audio });
-        };
+        }
+        this.setState({ audio: audio, songPlaying: !this.state?.songPlaying });
+        this.state.songPlaying ? audio.play() : audio.pause();
+    };
 
+    componentDidMount = () => {
+        this.setState({ songPlaying: false });
+    };
+
+    render() {
         return (
             <div
                 style={{
@@ -22,7 +32,11 @@ export default class SongPage extends Component {
                     className="w-100 img-responsive"
                     style={{ height: "70vh" }}
                 ></img>
-                <Controlbar title="Title" />
+                <Controlbar
+                    title={this.props.song.name}
+                    isPlaying={this.state?.isPlaying}
+                    onPausePlay={this.onPausePlay}
+                />
             </div>
         );
     }
