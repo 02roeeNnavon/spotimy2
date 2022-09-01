@@ -1,8 +1,29 @@
 import React, { Component } from "react";
 import Controlbar from "../components/Controlbar";
+import * as songService from "../Services/songService.js";
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    useParams
+  } from "react-router-dom";
 
-export default class SongPage extends Component {
+const withRouter = WrappedComponent => props => {
+    const params = useParams();
+    // etc... other react-router-dom v6 hooks
+  
+    return (
+      <WrappedComponent
+        {...props}
+        params={params}
+        // etc...
+      />
+    );
+  };
+
+class SongPage extends Component {
     progressInterval;
+
     onPausePlay = () => {
         if (this.state.audio.paused) {
             this.state.audio.play();
@@ -18,23 +39,29 @@ export default class SongPage extends Component {
     }
 
     componentDidMount = () => {
-        this.setState(
-            {
-                progress: 0,
-                isPlaying: false,
-                audio: new Audio(this.props.song.songurl),
-            },
-            () => {
-                this.progressInterval = window.setInterval(() => {
-                    this.setState({
-                        progress:
-                            100 *
-                            (this.state.audio.currentTime /
-                                this.state.audio.duration),
-                    });
-                }, 100);
-            }
-        );
+        let songId = this.props.params.id;
+        songService.getSongById(songId).then(song => {
+            this.setState({song: song});
+            console.log(song);
+        }, () => {
+            this.setState(
+                {
+                    progress: 0,
+                    isPlaying: false,
+                    audio: new Audio(this.state.song.songurl),
+                },
+                () => {
+                    this.progressInterval = window.setInterval(() => {
+                        this.setState({
+                            progress:
+                                100 *
+                                (this.state.audio.currentTime /
+                                    this.state.audio.duration),
+                        });
+                    }, 100);
+                }
+            );
+        });
     };
 
     render() {
@@ -47,12 +74,12 @@ export default class SongPage extends Component {
                 }}
             >
                 <img
-                    src={this.props.song.imageurl}
+                    src={this.state?.song.imageurl}
                     className="w-100 img-responsive"
                     style={{ height: "70vh" }}
                 ></img>
                 <Controlbar
-                    title={this.props.song.name}
+                    title={this.state?.song.name}
                     isPlaying={this.state?.isPlaying}
                     progress={this.state?.progress || 0}
                     onPausePlay={this.onPausePlay}
@@ -61,3 +88,5 @@ export default class SongPage extends Component {
         );
     }
 }
+
+export default withRouter(SongPage);
