@@ -1,20 +1,20 @@
 import React, { Component } from 'react'
 import SongPreview from './SongPreview'
-import { getAllSongs } from '../Services/songService'
+import { getAllSongs } from '../Services/songService.js'
 
 export default class SongList extends Component {
-    constructor(props){+
+    constructor(props){
         super(props)
         this.state = {songs:[{id:'012345',name:'test',}]}
     }
-    componentDidMount(){
-        this.setState({songs:getAllSongs().then()})
+    async componentDidMount(){
+        this.setState({songs:getAllSongs()})
 
     }
   render() {
     return (
       <div>{this.state.songs.map((element) => {
-        return <SongPreview song={element} goToSongPage={(id) => {console.log('hello');}} ></SongPreview>
+        return <SongPreview key={element.id} song={element} goToSongPage={(id) => {console.log('hello');}} ></SongPreview>
       })}</div>
     )
   }
