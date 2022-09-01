@@ -1,4 +1,10 @@
+let audio = null;
 const playSong = (songUrl) => {
-  console.log("hello");
+  audio?.pause();
+  audio = new Audio(songUrl);
+  audio.play();
 };
-export { playSong };
+const stopSong = () => {
+  audio?.pause();
+}
+export { playSong,stopSong };
