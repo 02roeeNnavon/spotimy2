@@ -11,7 +11,7 @@ function App() {
     <div>
       <SiteHeader page="Home" />
       <Routes>
-        <Route path="About" element={<About />} />
+        <Route path="/About" element={<About />} />
         <Route path="/" element = {<Home />} />
         <Route path="/Song/:id" element = {<SongPage/>}/>
       </Routes>

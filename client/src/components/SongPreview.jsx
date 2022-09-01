@@ -1,5 +1,6 @@
 import React from "react";
 import { playSong } from "../Services/utils";
+import { Link } from "react-router-dom";
 
 export default function SongPreview(props) {
   const {song, goToSongPage } = props;
@@ -46,14 +47,12 @@ export default function SongPreview(props) {
       </div>
 
       <div className="row">
-        <button
+        <Link
           className="col-12 my-1 btn btn-dark"
-          onClick={() => {
-            goToSongPage(song.id);
-          }}
+          to={`/Song/${song.id}`}
         >
           Song Page
-        </button>
+        </Link>
       </div>
     </div>
   );
