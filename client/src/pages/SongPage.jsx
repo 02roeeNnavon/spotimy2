@@ -25,7 +25,6 @@ class SongPage extends Component {
     progressInterval;
 
     onPausePlay = () => {
-        console.log(this.state.audio);
         if (this.state.audio.paused) {
             this.state.audio.play();
             this.setState({ isPlaying: true });
@@ -41,7 +40,6 @@ class SongPage extends Component {
 
     componentDidMount = () => {
         let songId = this.props.params.id;
-        console.log(1);
         songService.getSongById(songId).then(song => {
             this.setState({song: song}, () => {
                 this.setState(
