@@ -1,0 +1,18 @@
+-- Table: public.t_songs
+
+-- DROP TABLE IF EXISTS public.t_songs;
+
+CREATE TABLE IF NOT EXISTS public.t_songs
+(
+    name text COLLATE pg_catalog."default",
+    id character varying(255) COLLATE pg_catalog."default",
+    songurl text COLLATE pg_catalog."default",
+    genre text COLLATE pg_catalog."default",
+    imageurl text COLLATE pg_catalog."default",
+    singer text COLLATE pg_catalog."default"
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.t_songs
+    OWNER to postgres;
