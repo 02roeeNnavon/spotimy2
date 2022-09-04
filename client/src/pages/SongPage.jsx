@@ -74,7 +74,6 @@ class SongPage extends Component {
                 <img
                     src={this.state?.song.imageurl}
                     className="w-100 img-responsive"
-                    style={{ height: "70vh" }}
                 ></img>
                 <Controlbar
                     title={this.state?.song.name}
