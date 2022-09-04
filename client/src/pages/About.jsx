@@ -7,7 +7,7 @@ function AboutPerson(props) {
       <img
         style={{ minHeight: "200px" }}
         src="..."
-        className="card-img-top bg-secondary"
+        className="card-img-top bg-secondary mt-2"
       />
       <div className="card-body">
         <h5 className="card-title">{props.name}</h5>
@@ -52,10 +52,7 @@ export default class About extends Component {
       <div>
         <h2 className="text-center">About the app</h2>
         <p className="text-center">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quaerat
-          incidunt magnam provident reiciendis repellat soluta at cum fugiat
-          veritatis quasi, aspernatur, alias porro, quod quidem qui saepe
-          voluptatum dicta culpa.
+          Spotimy is a website that let you listen to songs online
         </p>
         <div className="row justify-content-around mt-5">
           <AboutPerson name="Ariel Slavinsky" about="text about me..." />
