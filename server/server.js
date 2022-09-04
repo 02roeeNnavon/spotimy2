@@ -30,23 +30,23 @@ app.get("/api/songs", async (req, res) => {
 
 //get specific song id
 app.get("/api/songs/:id", async (req, res) => {
-    try{
-        const songId = req.params.id;
-        const requestedSong = await getSongById(songId);
-      
-        if (!requestedSong) {
-          res.status(404).send(`song ${songId} not found`);
-        } else {
-          res.send(requestedSong);
-        }
-    }catch(err){
-        res.send(err)
+  try {
+    const songId = req.params.id;
+    const requestedSong = await getSongById(songId);
+
+    if (!requestedSong) {
+      res.status(404).send(`song ${songId} not found`);
+    } else {
+      res.send(requestedSong);
     }
+  } catch (err) {
+    res.send(err);
+  }
 });
 
 //create song
 app.post("/api/addsong", async (req, res) => {
-    const {name,songurl,genre,imageUrl,singer} = req.body
+  const { name, songurl, genre, imageUrl, singer } = req.body;
   try {
     const newSong = {
       name,
@@ -54,7 +54,7 @@ app.post("/api/addsong", async (req, res) => {
       songurl,
       genre,
       imageUrl,
-      singer
+      singer,
     };
     await createNewSong(newSong);
     res.send("song has been added");
@@ -82,4 +82,9 @@ app.listen(PORT, function (err) {
   console.log("Server listening on Port", PORT);
 });
 
-app.use(express.static(path.resolve(__dirname, '../client/build')));
+app.use(express.static(path.resolve(__dirname, "../client/build")));
+
+const indexPath = path.join(__dirname, "../client/build/index.html");
+app.get("*", (req, res) => {
+  res.sendFile(indexPath);
+});
