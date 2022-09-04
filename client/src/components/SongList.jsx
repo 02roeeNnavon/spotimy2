@@ -8,7 +8,8 @@ export default class SongList extends Component {
         this.state = {songs:[{id:'012345',name:'test',}]}
     }
     async componentDidMount(){
-        this.setState({songs:await getAllSongs()})
+        this.setState({
+          songs:await getAllSongs()})
 
     }
   render() {
