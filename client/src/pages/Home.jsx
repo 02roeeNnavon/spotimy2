@@ -12,7 +12,7 @@ export default class home extends Component {
   }
   render() {
     return (
-      <div>
+      <div className='bg-spotimy'>
         <SongList songs={this.state?.songs}/>
       </div>
     )

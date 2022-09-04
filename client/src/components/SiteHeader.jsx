@@ -4,10 +4,10 @@ export default function SiteHeader(props) {
     return (
         <nav className="navbar navbar-expand navbar-light bg-light">
             <div className="collapse navbar-collapse" id="navbarNav">
-                <ul className="navbar-nav">
+                <ul className="navbar-nav d-flex align-items-center">
                     <img width="48" height="48" src="/Assets/logos/quacksounds-v5.svg"/>
                     <li className="nav-item active">
-                        <div className="nav-link">Spotimy</div>
+                        <div className="nav-link h6 mb-0 m-10px">Spotimy</div>
                     </li>
                     <li className="nav-item active m-50px">
                         <Link className="nav-link" to="/">
