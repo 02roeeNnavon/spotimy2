@@ -28,7 +28,7 @@ app.get("/api/songs", async (req, res) => {
 });
 
 //get specific song id
-app.get("/api/song/:id", async (req, res) => {
+app.get("/api/songs/:id", async (req, res) => {
     try{
         const songId = req.params.id;
         const requestedSong = await getSongById(songId);
@@ -80,3 +80,4 @@ app.listen(PORT, function (err) {
   }
   console.log("Server listening on Port", PORT);
 });
+
