@@ -8,3 +8,7 @@
     font-size: 96pt;
     padding-bottom: 20px;
 }
+.fixed-bottom{
+    z-index: 1;
+    background-color: rgb(0.5, 0.5, 0.5, 0.75);
+}

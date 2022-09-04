@@ -6,9 +6,8 @@ import { loadFromStorage, saveToStorage } from "../Services/LocalService";
 
 
 export default function SongPreview(props) {
-  const {song, goToSongPage } = props;
+  const {song} = props;
  
-  
 const onAddToStorage=(id)=>{
   let likedStorage = loadFromStorage('likedSongs') || [];
   if(likedStorage.includes(id)){
