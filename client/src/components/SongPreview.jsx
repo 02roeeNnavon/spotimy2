@@ -64,14 +64,14 @@ const onAddToStorage=(id)=>{
       </div>
 
       <div className="row">
-        <Link
+        {/* <Link
           className="col-12 my-1 btn btn-dark"
           onClick={() => {
             console.log("hi");
           }}
         >
           Song Page
-        </Link>
+        </Link> */}
       </div>
     </div>
   );
