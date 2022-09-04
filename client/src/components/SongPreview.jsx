@@ -1,5 +1,6 @@
 import React from "react";
 import { playSong } from "../Services/utils";
+import { Link } from "react-router-dom";
 import { loadFromStorage, saveToStorage } from "../Services/LocalService";
 
 
@@ -63,14 +64,14 @@ const onAddToStorage=(id)=>{
       </div>
 
       <div className="row">
-        <button
+        <Link
           className="col-12 my-1 btn btn-dark"
           onClick={() => {
             console.log("hi");
           }}
         >
           Song Page
-        </button>
+        </Link>
       </div>
     </div>
   );
