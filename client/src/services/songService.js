@@ -1,5 +1,5 @@
 export async function getSongById(id) {
-    const res = await fetch(`http://${window.location.hostname}:3001/api/song/` + id);
+    const res = await fetch(`http://${window.location.hostname}:3001/api/songs/${id}` );
     return res.json();
 }
 
