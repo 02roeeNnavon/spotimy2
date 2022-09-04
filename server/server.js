@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
 const { makeId } = require("./util.js");
 const PORT = 3001;
 const {
@@ -81,3 +82,4 @@ app.listen(PORT, function (err) {
   console.log("Server listening on Port", PORT);
 });
 
+app.use(express.static(path.resolve(__dirname, '../client/build')));

@@ -6,7 +6,7 @@ import { loadFromStorage, saveToStorage } from "../Services/LocalService";
 
 
 export default function SongPreview(props) {
-  const {song, goToSongPage } = props;
+  const {song} = props;
  
   
 const onAddToStorage=(id)=>{
@@ -43,7 +43,7 @@ const onAddToStorage=(id)=>{
           <button
             className="btn btn-dark w-100pc"
             onClick={() => {
-                playSong(song.songurl);
+                playSong(process.env.PUBLIC_URL + song.songurl);
             }}
             >
             Play
