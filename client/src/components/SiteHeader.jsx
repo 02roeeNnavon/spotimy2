@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
+import svg from '../Assets/logos/quacksounds-v5.svg'
 
 export default function SiteHeader(props) {
     return (
         <nav className="navbar navbar-expand navbar-light bg-light">
             <div className="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav">
+                    <img width="48" height="48" src={svg}/>
                     <li className="nav-item active">
                         <Link className="nav-link" to="/">
                             {props.page == "home" ? <b>Home</b> : 'Home'}{" "}
