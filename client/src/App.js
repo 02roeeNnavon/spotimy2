@@ -5,6 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import About from "./pages/About";
 import Home from "./pages/Home";
 import SongPage from "./pages/SongPage";
+import LikesPages from "./pages/LikesPages";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="About" element={<About />} />
         <Route path="/" element = {<Home />} />
         <Route path="/Song/:id" element = {<SongPage/>}/>
+        <Route path="/SongLiked" element = {<LikesPages/>}/>
       </Routes>
       
       <SiteFooter />
