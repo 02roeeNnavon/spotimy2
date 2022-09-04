@@ -1,9 +1,26 @@
 import React from "react";
 import { playSong } from "../Services/utils";
 import { Link } from "react-router-dom";
+import { loadFromStorage, saveToStorage } from "../Services/LocalService";
+
+
 
 export default function SongPreview(props) {
   const {song, goToSongPage } = props;
+ 
+  
+const onAddToStorage=(id)=>{
+  let likedStorage = loadFromStorage('likedSongs') || [];
+  if(likedStorage.includes(id)){
+    const index = likedStorage.indexOf(id)
+    likedStorage.splice(index, 1);
+    saveToStorage('likedSongs',likedStorage);
+  }
+  else{
+    likedStorage.push(id);
+    saveToStorage('likedSongs',likedStorage);
+  }
+}
   return (
     <div className="container my-2  bg-secondary p-4 rounded">
       <div className="row">
@@ -38,7 +55,7 @@ export default function SongPreview(props) {
           <span
             className="h-100 col-12 btn btn-dark m-0 p-0"
             onClick={() => {
-              console.log("liked");
+             onAddToStorage(song.id)
             }}
           >
             Like
