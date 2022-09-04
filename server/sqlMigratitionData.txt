@@ -19,3 +19,9 @@ INSERT INTO public.t_songs (name, id, songurl, genre, imageurl, singer) VALUES (
 INSERT INTO public.t_songs (name, id, songurl, genre, imageurl, singer) VALUES ('dumb', 'TACOTx', 'dumb.mp3', 'rock', 'undefined', 'Kurt Cobain');
 
 
+--update for using static path
+update t_songs set songurl='/Assets/audioFiles/neverGonnaGiveYouUp.mp3' where id='dfdf05';
+update t_songs set songurl='/Assets/audioFiles/ourGodIsAwsomeGod.mp3' where id='kjih12';
+update t_songs set songurl='/Assets/audioFiles/ivriAnochi.mp3' where id='kwe2q2';
+update t_songs set songurl='/Assets/audioFiles/trapAnthem.mp3' where id='3khgy1';
+update t_songs set songurl='/Assets/audioFiles/dumb.mp3' where id='TACOTx';
