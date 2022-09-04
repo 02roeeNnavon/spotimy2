@@ -7,14 +7,14 @@ export default class home extends Component {
     super(props)
     this.state = {songs:[]}
   }
-  async componentDidMount(){
+  async componentDidMount() {
     this.setState({songs:await getAllSongs()})
   }
   render() {
     return (
       <div>
-        <h1 className='text-center title bg-dark text-light m-0'>Spotimy</h1>\
-        <SongList songs={this.state.songs}/>
+        <h1 className='text-center title bg-dark text-light m-0'>Spotimy</h1>\{/*<== this is a feature*/}
+        <SongList songs={this.state?.songs}/>
       </div>
     )
   }

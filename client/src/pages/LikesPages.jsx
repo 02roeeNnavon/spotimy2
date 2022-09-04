@@ -5,9 +5,9 @@ import {getAllSongs, getSongById } from "../Services/songService";
 import SongList from "../components/SongList";
 
 export default class LikesPages extends Component {
-  constructor(props){
-    super(props)
-    this.state = {songs:[]}
+  constructor(props) {
+    super(props);
+    this.state = {songs:[]};
   }
 
   async componentDidMount() {
@@ -19,9 +19,8 @@ export default class LikesPages extends Component {
   render() {
     return (
       <div>
-        <h1 className='text-center title bg-dark text-light m-0'>Spotimy</h1>\
+        <h1 className='text-center title bg-dark text-light m-0'>Spotimy</h1>\{/*<== this is a feature*/}
         <SongList songs={this.state?.songs}/>
-       
       </div>
     )
   }
