@@ -12,9 +12,6 @@ export default class SongList extends Component {
             <SongPreview
               key={element.id}
               song={element}
-              goToSongPage={(id) => {
-                console.log("hello");
-              }}
             ></SongPreview>
           );
         })}

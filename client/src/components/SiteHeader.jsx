@@ -19,6 +19,12 @@ export default function SiteHeader(props) {
                             <span className="sr-only"></span>
                         </Link>
                     </li>
+                    <li className="nav-item active">
+                        <Link className="nav-link" to="/SongLiked">
+                        {props.page == "likedSongs" ? <b>LikesSongs</b> : "LikedSongs"}{" "}
+                        <span className="sr-only"></span>
+                        </Link>
+                    </li>
                 </ul>
             </div>
         </nav>

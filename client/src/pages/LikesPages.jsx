@@ -10,10 +10,10 @@ export default class LikesPages extends Component {
     this.state = {songs:[]}
   }
 
-  async componentDidMount(){
-    const promiseArr =  loadFromStorage('likedSongs').map((songId) => {
+  async componentDidMount() {
+    const promiseArr =  loadFromStorage('likedSongs')?.map((songId) => {
       return getSongById(songId);
-     });
+     }) || [];
      this.setState({songs: await Promise.all(promiseArr)});
   }
   render() {
