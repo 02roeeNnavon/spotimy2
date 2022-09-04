@@ -10,13 +10,10 @@ import {
 
 const withRouter = WrappedComponent => props => {
     const params = useParams();
-    // etc... other react-router-dom v6 hooks
-  
     return (
       <WrappedComponent
         {...props}
         params={params}
-        // etc...
       />
     );
   };
@@ -36,6 +33,7 @@ class SongPage extends Component {
 
     componentWillUnmount = () => {
         window.clearInterval(this.progressInterval);
+        this.state.audio.pause();
     }
 
     componentDidMount = () => {
@@ -70,6 +68,7 @@ class SongPage extends Component {
                     margin: "100px",
                     marginRight: "200px",
                     marginLeft: "200px",
+                    justifyContent: 'center'
                 }}
             >
                 <img
