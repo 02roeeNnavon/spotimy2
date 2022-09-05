@@ -12,18 +12,6 @@ export default class SongPreview extends Component {
     };
   }
 
-  onClickHeart = (id) => {
-    let likes = loadFromStorage("likedSongs") || [];
-    if (likes.includes(id)) {
-      const index = likes.indexOf(id);
-      likes.splice(index, 1);
-      saveToStorage("likedSongs", likes);
-    } else {
-      likes.push(id);
-      saveToStorage("likedSongs", likes);
-    }
-
-  
   render() {
     const song = this.props.song;
     return (
@@ -62,14 +50,10 @@ export default class SongPreview extends Component {
           <button
             className="btn btn-link p-0"
             onClick={() => {
-              this.onClickHeart(song.id);
-              this.setState({ ...this.state });
-              if (this.props.onLike) {
-                this.props.onLike();
-              }
+                this.props.onLike(song.id);
             }}
           >
-            {this.isInLiked(song.id) ? (
+            {this.props.isLiked ? (
               <FaHeart size={32} className="text-green" />
             ) : (
               <FaRegHeart size={32} className="text-green" />
