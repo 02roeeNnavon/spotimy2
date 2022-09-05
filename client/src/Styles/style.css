@@ -29,14 +29,6 @@
     object-fit: cover;
 }
 
-a {
-    color: rgb(0.75, 0.75, 0.75, 1);
-    text-decoration: none;
-}
-
-a:hover {
-    color: rgb(0.75, 0.75, 0.75, 1);
-    text-decoration: none;
 .m-50px{
     margin-left: 50px;
 }
@@ -44,8 +36,26 @@ a:hover {
     margin-left: 10px;
 }
 .bg-spotimy{
-    background-color: whitesmoke;
+    background-color: #1d1d1d;
 }
 .bg-header{
-    background-color: #2a77f6;
+    background-color: #101010;
+}
+.gap{
+    margin-bottom: 50px;
+}
+.text-green{
+    color: #54d93d;
+}
+.text-defult{
+    color: #b1b1b1 !important;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    color: #54d93d !important;
+    text-decoration: none;
 }

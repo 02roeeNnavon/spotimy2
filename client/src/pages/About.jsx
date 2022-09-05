@@ -3,15 +3,15 @@ import * as RM from "../Services/rayMarching";
 
 function AboutPerson(props) {
   return (
-    <div className="card col-3">
+    <div className="card col-3 bg-header">
       <img
         style={{ minHeight: "200px" }}
         src={props.img}
         className="card-img-top bg-secondary mt-2"
       />
       <div className="card-body">
-        <h5 className="card-title">{props.name}</h5>
-        <p className="card-text">{props.about}</p>
+        <h5 className="card-title text-defult">{props.name}</h5>
+        <p className="card-text text-defult">{props.about}</p>
       </div>
     </div>
   );
@@ -50,8 +50,8 @@ export default class About extends Component {
   render() {
     return (
       <div className="pt-5 pb-5">
-        <h2 className="text-center">About the app</h2>
-        <p className="text-center">
+        <h2 className="text-center text-defult">About the app</h2>
+        <p className="text-center text-defult">
           Spotimy is a website that let you listen to songs online
         </p>
         <div className="row justify-content-around mt-5">
