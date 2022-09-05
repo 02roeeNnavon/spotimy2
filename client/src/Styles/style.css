@@ -29,6 +29,10 @@
     object-fit: cover;
 }
 
+.object-fit-cover {
+    object-fit: cover;
+}
+
 .m-50px{
     margin-left: 50px;
 }
