@@ -1,10 +1,18 @@
 let audio = null;
-const playSong = (songUrl) => {
+
+const playSong = (songUrl, progress) => {
   audio?.pause();
   audio = new Audio(songUrl);
+  audio.currentTime = progress;
   audio.play();
 };
 const stopSong = () => {
   audio?.pause();
 }
-export { playSong,stopSong };
+const getProgress = () => {
+  return audio?.currentTime;
+}
+const isPlaying = () => {
+  return !audio?.paused;
+}
+export { playSong,stopSong,getProgress,isPlaying };

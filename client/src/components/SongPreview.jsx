@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import { playSong } from "../Services/utils";
+import { isPlaying,getProgress, playSong, stopSong } from "../Services/utils";
 import { Link } from "react-router-dom";
 import { loadFromStorage, saveToStorage } from "../Services/LocalService";
 import { FaHeart, FaPause, FaPlay } from "react-icons/fa";
 
 export default class SongPreview extends Component {
+    progress = 0;
   constructor(props) {
     super(props);
     this.state = {
@@ -24,14 +25,6 @@ export default class SongPreview extends Component {
     }
   };
 
-  isPlaying(props) {
-    if (props.isActive === true) {
-      return <FaPause size={32} />;
-    } else {
-      return <FaPlay size={32} />;
-    }
-  }
-
   isInLiked(id) {
     let likedStorage = loadFromStorage("likedSongs") || [];
     return likedStorage.includes(id);
@@ -42,7 +35,7 @@ export default class SongPreview extends Component {
     return (
       <li className="card mb-3 p-2 flex-lg-row flex-sm-column">
         <Link to={`/Song/${song.id}`} className="col-md-4">
-          <img src={song.imageurl} className="card-img cover-image" />
+          <img src={song.imageurl} alt={song.songurl} className="card-img cover-image" />
         </Link>
         <Link to={`/Song/${song.id}`} className="col-md-4">
           <div className="card-body">
@@ -60,11 +53,12 @@ export default class SongPreview extends Component {
             <span
               className="btn m-0 p-0"
               onClick={() => {
-                playSong(song.songurl);
-                this.setState({ isActive: !this.state.isActive });
+                this.props.currentPlayingId === song.id ? stopSong() : playSong(song.songurl, this.progress);
+                this.props.onPausePlay(song.id, isPlaying());
+                this.progress = getProgress();
               }}
             >
-            {this.isPlaying(this.props)}
+                {this.props.currentPlayingId === song.id ? <FaPause/> : <FaPlay/>}
             </span>
           </div>
           <div className="col-md-1 mx-2">
