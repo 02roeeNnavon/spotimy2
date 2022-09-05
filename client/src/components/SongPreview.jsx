@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { isPlaying, getProgress, playSong, stopSong } from "../Services/utils";
 import { Link } from "react-router-dom";
-import { loadFromStorage, saveToStorage } from "../Services/LocalService";
 import { FaHeart, FaRegHeart, FaPause, FaPlay } from "react-icons/fa";
 
 export default class SongPreview extends Component {
@@ -23,13 +22,8 @@ export default class SongPreview extends Component {
       likes.push(id);
       saveToStorage("likedSongs", likes);
     }
-  };
 
-  isInLiked(id) {
-    let likedStorage = loadFromStorage("likedSongs") || [];
-    return likedStorage.includes(id);
-  }
-
+  
   render() {
     const song = this.props.song;
     return (
@@ -48,7 +42,6 @@ export default class SongPreview extends Component {
             <p className="card-text">Artist: {song.singer}</p>
           </div>
         </Link>
-
         <div className="col-md-4 d-flex justify-content-center align-items-center">
           <button
             className="btn btn-link p-0 mr-3"
