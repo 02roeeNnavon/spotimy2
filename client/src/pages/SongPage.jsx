@@ -5,20 +5,19 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
-    useParams
-  } from "react-router-dom";
+    useParams,
+} from "react-router-dom";
 
-const withRouter = WrappedComponent => props => {
+const withRouter = (WrappedComponent) => (props) => {
     const params = useParams();
-    return (
-      <WrappedComponent
-        {...props}
-        params={params}
-      />
-    );
-  };
+    return <WrappedComponent {...props} params={params} />;
+};
 
 class SongPage extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { audio: null, isPlaying: false, progress: 0 };
+    }
     progressInterval;
 
     onPausePlay = () => {
@@ -33,46 +32,48 @@ class SongPage extends Component {
 
     componentWillUnmount = () => {
         window.clearInterval(this.progressInterval);
-        this.state.audio.pause();
-    }
+        this.state.audio?.pause();
+    };
 
     componentDidMount = () => {
         let songId = this.props.params.id;
-        songService.getSongById(songId).then(song => {
-            this.setState({song: song}, () => {
-                this.setState(
-                    {
-                        progress: 0,
-                        isPlaying: false,
-                        audio: new Audio(this.state.song.songurl),
-                    },
-                    () => {
-                        this.progressInterval = window.setInterval(() => {
-                            this.setState({
-                                progress:
-                                    100 *
-                                    (this.state.audio.currentTime /
-                                        this.state.audio.duration),
-                            });
-                        }, 100);
-                    }
-                );
-            })
+        songService.getSongById(songId).then((song) => {
+            this.setState(
+                {
+                    song: song,
+                    progress: 0,
+                    isPlaying: false,
+                    audio: new Audio(song.songurl),
+                },
+                () => {
+                    this.progressInterval = window.setInterval(() => {
+                        this.setState({
+                            progress:
+                                100 *
+                                (this.state.audio.currentTime /
+                                    this.state.audio.duration),
+                        });
+                    }, 100);
+                }
+            );
         });
-    }
+    };
 
     render() {
+        if (!this.state.song) {
+            return <></>;
+        }
         return (
             <div
                 style={{
                     margin: "100px",
                     marginRight: "200px",
                     marginLeft: "200px",
-                    justifyContent: 'center'
+                    justifyContent: "center",
                 }}
             >
                 <img
-                    src={this.state?.song.imageurl}
+                    src={this.state.song.imageurl}
                     className="w-100 img-responsive"
                 ></img>
                 <Controlbar
