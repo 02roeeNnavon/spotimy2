@@ -8,6 +8,7 @@ const {
   getSongById,
   createNewSong,
   deleteSongById,
+  search,
 } = require("./queries");
 const app = express();
 app.use(express.json());
@@ -24,10 +25,24 @@ app.get("/api/songs", async (req, res) => {
       res.send(songs);
     }
   } catch (err) {
-    console.log(err);
     res.send(err);
   }
 });
+
+app.get("/api/songs/search/:value", async (req, res) => {
+  try {
+    const songs = await search(req.params.value);
+    if (!songs || !songs.length){
+      res.status(404).send([])
+    }
+    else{
+      res.send(songs)
+    }
+  } 
+  catch (err) {
+    res.status(404)
+  }
+})
 
 //get specific song id
 app.get("/api/songs/:id", async (req, res) => {
@@ -41,7 +56,6 @@ app.get("/api/songs/:id", async (req, res) => {
       res.send(requestedSong);
     }
   } catch (err) {
-    console.log(err);
     res.send(err);
   }
 });
@@ -86,7 +100,7 @@ app.listen(PORT, function (err) {
 
 app.use(express.static(path.resolve(__dirname, "../client/build")));
 
-// const indexPath = path.join(__dirname, "../client/build/index.html");
-// app.get("*", (req, res) => {
-//   res.sendFile(indexPath);
-// });
+const indexPath = path.join(__dirname, "../client/build/index.html");
+app.get("*", (req, res) => {
+  res.sendFile(indexPath);
+});

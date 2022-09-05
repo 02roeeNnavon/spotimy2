@@ -98,3 +98,16 @@ a:hover {
     background-color: #1d1d1d;
     background-image: linear-gradient(90deg, #101010, #1c1c1c)
   }
+
+  .search-bar {
+    background-color: #101010;
+    color: white;
+    display: block;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+  }
+
+.search-bar::placeholder {
+    color: white;
+  }
