@@ -9,7 +9,11 @@ export async function getAllSongs() {
     const res = await fetch(`http://${apiHost}/api/songs/`);
     return res.json();
 }
-
+export async function search(value){
+    console.log(value);
+    const res = await fetch(`http://${apiHost}/api/songs/search/${value}`)
+    return res.json();
+}
 export async function postSong(song) {
     const res = await fetch(`http://${apiHost}/api`, {
 		method: 'POST',

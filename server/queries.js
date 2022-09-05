@@ -21,9 +21,17 @@ async function deleteSongById(id) {
   return;
 }
 
+async function search(value){
+  value = value.toLowerCase();
+  const songs = await getData(`SELECT * FROM t_songs WHERE LOWER(name) LIKE '%${value}%'`);
+  console.log()
+  return songs.rows;
+}
+
 module.exports = {
   getAllSongs,
   getSongById,
   createNewSong,
   deleteSongById,
+  search,
 };
