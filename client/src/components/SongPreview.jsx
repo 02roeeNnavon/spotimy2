@@ -33,7 +33,7 @@ export default class SongPreview extends Component {
   render() {
     const song = this.props.song;
     return (
-      <li className="card mb-3 p-2 flex-lg-row flex-sm-column">
+      <li className="card mb-3 p-2 flex-lg-row flex-sm-column bg-header">
         <Link to={`/Song/${song.id}`} className="col-md-4">
           <img src={song.imageurl} alt={song.songurl} className="card-img cover-image" />
         </Link>
@@ -58,7 +58,7 @@ export default class SongPreview extends Component {
                 this.progress = getProgress();
               }}
             >
-                {this.props.currentPlayingId === song.id ? <FaPause/> : <FaPlay/>}
+                {this.props.currentPlayingId === song.id ? <FaPause className="text-green" size={32}/> : <FaPlay className="text-green" size={32}/>}
             </span>
           </div>
           <div className="col-md-1 mx-2">
@@ -70,8 +70,7 @@ export default class SongPreview extends Component {
               }}
             >
               <FaHeart
-                color={this.isInLiked(song.id) ? "red" : "green"}
-                className="m-0 p-0"
+                className={`m-0 p-0 ${this.isInLiked(song.id) ? "text-danger" : "text-green"}`}
                 size={32}
               />
             </span>
