@@ -70,7 +70,7 @@ a:hover {
 }
 
 .home-page{
-position: relative;
+    position: relative;
 
 }
     .music-svg{
@@ -93,5 +93,8 @@ position: relative;
     .music-svg{
       display: none;
     }
-
+  }
+  body {
+    background-color: #1d1d1d;
+    background-image: linear-gradient(90deg, #101010, #1c1c1c)
   }
