@@ -23,6 +23,7 @@ export default class SongList extends Component {
               song={element}
               currentPlayingId={this.state.currentPlayingId}
               onPausePlay={this.onPausePlay}
+              onLike={this.props.onLike}
             ></SongPreview>
           );
         })}
