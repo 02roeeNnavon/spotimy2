@@ -9,7 +9,7 @@ import LikesPages from "./pages/LikesPages";
 
 function App() {
   return (
-    <div>
+    <div className="bg-spotimy">
       <SiteHeader page="Home" />
       <Routes>
         <Route path="/About" element={<About />} />
