@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function SiteHeader(props) {
     return (
-        <nav className="navbar navbar-expand navbar-light bg-light">
+        <nav className="navbar navbar-expand navbar-light bg-header">
             <div className="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav d-flex align-items-center">
                     <img width="48" height="48" src="/Assets/logos/quacksounds-v5.svg"/>

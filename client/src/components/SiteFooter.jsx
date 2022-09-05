@@ -1,7 +1,7 @@
 export default function SiteFooter() {
   return (
     <div
-      className="text-center p-4"
+      className="text-center p-4 bg-header"
       style={{ backgroundColor: "rgba(0, 0, 0, 0.05)" }}
     >
      <h1>  © 2022 Roim rachok </h1>
