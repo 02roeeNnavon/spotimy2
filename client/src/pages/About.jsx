@@ -3,15 +3,15 @@ import * as RM from "../Services/rayMarching";
 
 function AboutPerson(props) {
   return (
-    <div className="card col-3">
+    <div className="card col-3 bg-header">
       <img
         style={{ minHeight: "200px" }}
-        src="..."
+        src={props.img}
         className="card-img-top bg-secondary mt-2"
       />
       <div className="card-body">
-        <h5 className="card-title">{props.name}</h5>
-        <p className="card-text">{props.about}</p>
+        <h5 className="card-title text-defult">{props.name}</h5>
+        <p className="card-text text-defult">{props.about}</p>
       </div>
     </div>
   );
@@ -49,15 +49,15 @@ export default class About extends Component {
 
   render() {
     return (
-      <div>
-        <h2 className="text-center">About the app</h2>
-        <p className="text-center">
+      <div className="pt-5 pb-5">
+        <h2 className="text-center text-defult">About the app</h2>
+        <p className="text-center text-defult">
           Spotimy is a website that let you listen to songs online
         </p>
         <div className="row justify-content-around mt-5">
-          <AboutPerson name="Ariel Slavinsky" about="text about me..." />
-          <AboutPerson name="Roee Navon" about="text about me..." />
-          <AboutPerson name="Ron Perelman" about="text about me..." />
+          <AboutPerson name="Ariel Slavinsky" about="text about me..." img="/Assets/images/ariel.jpg"/>
+          <AboutPerson name="Roee Navon" about="text about me..." img="/Assets/images/roee.jpg"/>
+          <AboutPerson name="Ron Perelman" about="text about me..." img="/Assets/images/ron.jpg"/>
         </div>
         <div className="row justify-content-center mt-5">
           <canvas className="w-75 h-75" ref="rm"></canvas>

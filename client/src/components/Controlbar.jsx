@@ -5,7 +5,7 @@ export default class extends Component {
     render() {
         return (
             <div className="w-100">
-                <h2 className="w-100 d-flex justify-content-center">
+                <h2 className="w-100 d-flex justify-content-center text-defult">
                     {this.props.title}
                 </h2>
                 <div className="d-flex justify-content-around w-100">

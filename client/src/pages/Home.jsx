@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import SongList from '../components/SongList'
 import { getAllSongs } from "../Services/songService.js";
 
+
 export default class home extends Component {
   constructor(props){
     super(props)
@@ -12,7 +13,10 @@ export default class home extends Component {
   }
   render() {
     return (
-      <div>
+
+      <div className=' home-page bg-spotimy'>
+        <img className="music-svg music-svg-1" src='Assets/images/music1.svg' alt="" />
+        <img className='music-svg music-svg-2' src='Assets/images/music2.svg' alt="" />
         <SongList songs={this.state?.songs}/>
       </div>
     )
