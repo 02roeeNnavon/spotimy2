@@ -82,19 +82,11 @@ app.listen(PORT, function (err) {
   console.log("Server listening on Port", PORT);
 });
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-app.use(express.static(path.resolve(__dirname, '../client/build')));
-=======
-=======
->>>>>>> 93aa3d1b01c161c3aea1d4efcb9f2ec56831d200
+app.use(express.static(path.resolve(__dirname, "../client/build")));
+
 app.use(express.static(path.resolve(__dirname, "../client/build")));
 
 const indexPath = path.join(__dirname, "../client/build/index.html");
 app.get("*", (req, res) => {
   res.sendFile(indexPath);
 });
-<<<<<<< HEAD
->>>>>>> 8b2c87af87fa1fe072966f926597a3822316ad39
-=======
->>>>>>> 93aa3d1b01c161c3aea1d4efcb9f2ec56831d200
