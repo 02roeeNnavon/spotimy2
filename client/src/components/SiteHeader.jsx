@@ -8,6 +8,9 @@ export default function SiteHeader(props) {
                     <audio src="/Assets/audioFiles/neverGonnaGiveYouUp.mp3"></audio>
                     <img width="48" height="48" src="/Assets/logos/quacksounds-v5.svg"/>
                     <li className="nav-item active">
+                        <div className="nav-link">Spotimy</div>
+                    </li>
+                    <li className="nav-item active m-50px">
                         <Link className="nav-link" to="/">
                             {props.page == "home" ? <b>Home</b> : 'Home'}{" "}
                             <span className="sr-only"></span>
