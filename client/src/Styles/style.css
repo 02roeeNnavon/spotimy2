@@ -37,6 +37,7 @@
 }
 .bg-spotimy{
     background-color: #1d1d1d;
+    background-image: linear-gradient(90deg, #101010, #1c1c1c)
 }
 .bg-header{
     background-color: #101010;
@@ -62,3 +63,30 @@ a:hover {
 .m-50px{
     margin-left: 50px;
 }
+
+.home-page{
+position: relative;
+
+}
+    .music-svg{
+        position: absolute;
+    }
+
+.music-svg-1{
+    height: 300px;
+    width: 300px;
+    left: 80%;
+}
+
+.music-svg-2{
+    top: 60%;
+    height: 300px;
+    width: 300px;
+} 
+
+@media screen and (max-width: 600px) {
+    .music-svg{
+      display: none;
+    }
+
+  }
