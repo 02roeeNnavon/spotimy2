@@ -1,35 +1,18 @@
 import React, { Component } from "react";
 import { isPlaying,getProgress, playSong, stopSong } from "../Services/utils";
 import { Link } from "react-router-dom";
-import { loadFromStorage, saveToStorage } from "../Services/LocalService";
 import { FaHeart, FaRegHeart, FaPause, FaPlay } from "react-icons/fa";
 
 export default class SongPreview extends Component {
     progress = 0;
-  constructor(props) {
-    super(props);
-    this.state = {
-      isActive: false,
-    };
-  }
-
-  onAddToStorage = (id) => {
-    let likedStorage = loadFromStorage("likedSongs") || [];
-    if (likedStorage.includes(id)) {
-      const index = likedStorage.indexOf(id);
-      likedStorage.splice(index, 1);
-      saveToStorage("likedSongs", likedStorage);
-    } else {
-      likedStorage.push(id);
-      saveToStorage("likedSongs", likedStorage);
+    constructor(props) {
+        super(props);
+        this.state = {
+        isActive: false,
+        };
     }
-  };
 
-  isInLiked(id) {
-    let likedStorage = loadFromStorage("likedSongs") || [];
-    return likedStorage.includes(id);
-  }
-
+  
   render() {
     const song = this.props.song;
     return (
@@ -65,13 +48,10 @@ export default class SongPreview extends Component {
             <span
               className="btn m-0 p-0"
               onClick={() => {
-                this.onAddToStorage(song.id);
-                this.setState({ ...this.state });
-                if(this.props.onLike)
-                    this.props.onLike();
+                this.props.onLike(song.id);
               }}
             >
-                {this.isInLiked(song.id) ? <FaHeart size={32} className="m-0 p-0 text-green"/> : <FaRegHeart size={32} className="m-0 p-0 text-green"/>}
+                {this.props.isLiked ? <FaHeart size={32} className="m-0 p-0 text-green"/> : <FaRegHeart size={32} className="m-0 p-0 text-green"/>}
             </span>
           </div>
         </div>
