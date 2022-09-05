@@ -5,6 +5,7 @@ export default function SiteHeader(props) {
         <nav className="navbar navbar-expand navbar-light bg-light">
             <div className="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav">
+                    <audio src="/Assets/audioFiles/neverGonnaGiveYouUp.mp3"></audio>
                     <img width="48" height="48" src="/Assets/logos/quacksounds-v5.svg"/>
                     <li className="nav-item active">
                         <div className="nav-link">Spotimy</div>

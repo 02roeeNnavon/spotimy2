@@ -8,9 +8,9 @@ export default class SongList extends Component {
     }
   render() {
     return (
-      <div>{this.props.songs.map((element) => {
+      <ul className='d-flex flex-column align-items-center content-list'>{this.props.songs.map((element) => {
         return <SongPreview key={element.id} song={element}></SongPreview>
-      })}</div>
+      })}</ul>
     )
   }
 }
