@@ -2,74 +2,60 @@ import React from "react";
 import { playSong } from "../Services/utils";
 import { Link } from "react-router-dom";
 import { loadFromStorage, saveToStorage } from "../Services/LocalService";
-
-
+import { FaHeart, FaPlay } from "react-icons/fa";
 
 export default function SongPreview(props) {
-  const {song} = props;
- 
-const onAddToStorage=(id)=>{
-  let likedStorage = loadFromStorage('likedSongs') || [];
-  if(likedStorage.includes(id)){
-    const index = likedStorage.indexOf(id)
-    likedStorage.splice(index, 1);
-    saveToStorage('likedSongs',likedStorage);
-  }
-  else{
-    likedStorage.push(id);
-    saveToStorage('likedSongs',likedStorage);
-  }
-}
-  return (
-    <div className="container my-2  bg-secondary p-4 rounded">
-      <div className="row">
-        <h2 className="text-18pt text-center col-12 bg-dark text-white m-0 my-1 p-1">
-          {song.name}
-        </h2>
-      </div>
+    const { song } = props;
 
-      <div className="row">
+    const onAddToStorage = (id) => {
+        let likedStorage = loadFromStorage("likedSongs") || [];
+        if (likedStorage.includes(id)) {
+            const index = likedStorage.indexOf(id);
+            likedStorage.splice(index, 1);
+            saveToStorage("likedSongs", likedStorage);
+        } else {
+            likedStorage.push(id);
+            saveToStorage("likedSongs", likedStorage);
+        }
+    };
+    return (
+        <li className="card mb-3 p-2 flex-lg-row flex-sm-column">
+            <Link to={`/Song/${song.id}`} className="col-md-4">
+                <img src={song.imageurl} className="card-img cover-image" />
+            </Link>
+            <Link to={`/Song/${song.id}`} className="col-md-4">
+                <div className="card-body">
+                    <h3 className="card-title">{song.name}</h3>
+                    <p className="card-text">Genre: {song.genre}</p>
+                    <p className="card-text">Artist: {song.singer}</p>
+                </div>
+            </Link>
 
-        <div className="col-4 p-0">
-          <img width={300} height={200} className="card-img col-12 m-0 p-0" src={song.imageurl} alt={song.name} />
-        </div>
-
-        <div className="col-4 ">
-           
-          <p className="text-center col-12 bg-dark text-white m-0 my-1 p-1">{song.singer}</p>
-                
-          <p className="text-center col-12 bg-dark text-white m-0 my-1 p-1">{song.genre}</p>
-          <button
-            className="btn btn-dark w-100pc"
-            onClick={() => {
-                playSong(process.env.PUBLIC_URL + song.songurl);
-            }}
+            <div
+                className="d-flex align-items-center col-md-4"
+                style={{ marginLeft: "81px" }}
             >
-            Play
-          </button>
-             
-        </div>
-
-        <div className="col-4 p-0">
-          <span
-            className="h-100 col-12 btn btn-dark m-0 p-0"
-            onClick={() => {
-             onAddToStorage(song.id)
-            }}
-          >
-            Like
-          </span>
-        </div>
-      </div>
-
-      <div className="row">
-        <Link
-          className="col-12 my-1 btn btn-dark"
-          to={`/Song/${song.id}`}
-        >
-          Song Page
-        </Link>
-      </div>
-    </div>
-  );
+                <div className="col-md-1 mx-2">
+                    <span
+                        className="btn m-0 p-0"
+                        onClick={() => {
+                            playSong(song.songurl);
+                        }}
+                    >
+                        <FaPlay size={32} />
+                    </span>
+                </div>
+                <div className="col-md-1 mx-2">
+                    <span
+                        className="btn m-0 p-0"
+                        onClick={() => {
+                            onAddToStorage(song.id);
+                        }}
+                    >
+                        <FaHeart className="m-0 p-0" size={32} />
+                    </span>
+                </div>
+            </div>
+        </li>
+    );
 }
