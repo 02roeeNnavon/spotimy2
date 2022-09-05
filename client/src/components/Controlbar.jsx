@@ -20,10 +20,10 @@ export default class extends Component {
                 <input
                     className="w-100 bg-dark"
                     type="range"
-                    disabled={true}
                     value={this.props.progress}
                     min="1"
                     max="100"
+                    onChange={this.props.onProgress}
                 ></input>
             </div>
         );

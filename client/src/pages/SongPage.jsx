@@ -59,6 +59,13 @@ class SongPage extends Component {
         });
     };
 
+    onProgress = (e) => {
+        const progress = e.target.value;
+        const time = this.state.audio.duration * progress / 100;
+        if(time != NaN) this.state.audio.currentTime = time;
+        this.setState({progress: progress});
+    }
+
     render() {
         if (!this.state.song) {
             return <></>;
@@ -81,6 +88,7 @@ class SongPage extends Component {
                     isPlaying={this.state?.isPlaying}
                     progress={this.state?.progress || 0}
                     onPausePlay={this.onPausePlay}
+                    onProgress={this.onProgress}
                 />
             </div>
         );
