@@ -9,17 +9,26 @@ export default class LikesPages extends Component {
     this.state = { songs: [] };
   }
 
-  async componentDidMount() {
+  updateLikedSongs = async () => {
     const promiseArr =
-      loadFromStorage("likedSongs")?.map((songId) => {
-        return getSongById(songId);
-      }) || [];
+    loadFromStorage("likedSongs")?.map((songId) => {
+      return getSongById(songId);
+    }) || [];
     this.setState({ songs: await Promise.all(promiseArr) });
   }
+
+  async componentDidMount() {
+    this.updateLikedSongs();
+  }
+
+  onLike = async () => {
+    this.updateLikedSongs();
+  }
+
   render() {
     return (
       <div>
-        <SongList songs={this.state?.songs} />
+        <SongList onLike={this.onLike} songs={this.state?.songs} />
       </div>
     );
   }

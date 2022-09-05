@@ -24,6 +24,7 @@ app.get("/api/songs", async (req, res) => {
       res.send(songs);
     }
   } catch (err) {
+    console.log(err);
     res.send(err);
   }
 });
@@ -40,6 +41,7 @@ app.get("/api/songs/:id", async (req, res) => {
       res.send(requestedSong);
     }
   } catch (err) {
+    console.log(err);
     res.send(err);
   }
 });
@@ -84,7 +86,7 @@ app.listen(PORT, function (err) {
 
 app.use(express.static(path.resolve(__dirname, "../client/build")));
 
-const indexPath = path.join(__dirname, "../client/build/index.html");
-app.get("*", (req, res) => {
-  res.sendFile(indexPath);
-});
+// const indexPath = path.join(__dirname, "../client/build/index.html");
+// app.get("*", (req, res) => {
+//   res.sendFile(indexPath);
+// });

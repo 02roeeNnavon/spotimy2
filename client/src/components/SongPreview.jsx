@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { isPlaying,getProgress, playSong, stopSong } from "../Services/utils";
 import { Link } from "react-router-dom";
 import { loadFromStorage, saveToStorage } from "../Services/LocalService";
-import { FaHeart, FaPause, FaPlay } from "react-icons/fa";
+import { FaHeart, FaRegHeart, FaPause, FaPlay } from "react-icons/fa";
 
 export default class SongPreview extends Component {
     progress = 0;
@@ -67,12 +67,11 @@ export default class SongPreview extends Component {
               onClick={() => {
                 this.onAddToStorage(song.id);
                 this.setState({ ...this.state });
+                if(this.props.onLike)
+                    this.props.onLike();
               }}
             >
-              <FaHeart
-                className={`m-0 p-0 ${this.isInLiked(song.id) ? "text-danger" : "text-green"}`}
-                size={32}
-              />
+                {this.isInLiked(song.id) ? <FaHeart size={32} className="m-0 p-0 text-green"/> : <FaRegHeart size={32} className="m-0 p-0 text-green"/>}
             </span>
           </div>
         </div>
