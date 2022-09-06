@@ -37,7 +37,7 @@ export default class SongList extends Component {
   }
   render() {
     return (
-      <ul className="d-flex flex-column align-items-center content-list">
+      <ul className="px-0 d-flex flex-column align-items-center content-list">
         {this.props.songs.map((element) => {
           return (
             <SongPreview
