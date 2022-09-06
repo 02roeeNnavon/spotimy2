@@ -35,15 +35,16 @@ export default class About extends Component {
         this.rm.lightFunction = "vec3(uPosition)";
         this.refs.rm.width = window.innerWidth;
         this.refs.rm.height = window.innerHeight;
-        this.rm.colorFunction = RM.Fractal.DEFAULT_FRACTAL_COLOR;
+        this.rm.colorFunction = RM.Fractal.DEFAULT_FRACTAL_COLOR + '* 0.8';
         this.rm.cameraPosition = { x: 12, y: 7, z: 12 };
         this.rm.cameraRotation = { x: 25, y: -135, z: 0 };
         this.rm.extra = sky;
+        this.rm.shadows = true;
         this.rm.skyColorFunction = "skyColor(uv, reflection, rayDir)";
         let fractal = new RM.MandelboxFractal();
         fractal.iterations = 10;
         this.rm.compile(this.refs.rm, fractal.getDistanceFunction());
-        this.rm.previewScale = 10;
+        this.rm.previewScale = 13;
     };
 
     render() {
