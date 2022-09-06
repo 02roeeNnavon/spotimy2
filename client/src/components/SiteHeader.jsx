@@ -5,17 +5,18 @@ export default function SiteHeader(props) {
         <nav className="navbar navbar-expand navbar-light bg-header gap">
             <div className="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav d-flex align-items-center">
-                    <audio src="/Assets/audioFiles/neverGonnaGiveYouUp.mp3"></audio>
-                    <img width="48" height="48" src="/Assets/logos/quacksounds-v5.svg"/>
-                    <li className="nav-item active">
-                        <div className="nav-link h6 mb-0 m-10px text-defult">Spotimy</div>
-                    </li>
-                    <li className="nav-item active m-50px">
-                        <Link className="nav-link text-defult" to="/">
-                            {props.page == "home" ? <b>Home</b> : 'Home'}{" "}
-                            <span className="sr-only"></span>
-                        </Link>
-                    </li>
+                    <Link className="nav-link text-defult" to="/">
+                        <img width="48" height="48" src="/Assets/logos/quacksounds-v5.svg"/>
+                    </Link>
+                    <Link className="nav-link text-defult" to="/">
+                        <li className="nav-item active ml-2">
+                            <h4>
+                                {props.page == "home" ? <b>Spotimy</b> : 'Spotimy'}{" "}
+                                <span className="sr-only"></span>
+                            </h4>
+                        </li>
+                    </Link>
+                    
                     <li className="nav-item active">
                         <Link className="nav-link text-defult" to="/About">
                             {props.page == "about" ? <b>About</b> : 'About'}{" "}
