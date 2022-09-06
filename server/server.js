@@ -9,6 +9,8 @@ const {
   createNewSong,
   deleteSongById,
   search,
+  fillter,
+  genre,
 } = require("./queries");
 const app = express();
 app.use(express.json());
@@ -29,9 +31,9 @@ app.get("/api/songs", async (req, res) => {
   }
 });
 
-app.get("/api/songs/search/:value", async (req, res) => {
+app.get("/api/songs/search/:fillter/:value", async (req, res) => {
   try {
-    const songs = await search(req.params.value);
+    const songs = await search(req.params.value,req.params.fillter);
     if (!songs || !songs.length){
       res.status(404).send([])
     }
@@ -41,6 +43,32 @@ app.get("/api/songs/search/:value", async (req, res) => {
   } 
   catch (err) {
     res.status(404)
+  }
+})
+
+app.get("/api/songs/fillter/:value", async (req, res) => {
+  try{
+    const songs = await fillter(req.params.value);
+    if (!songs || !songs.length){
+      res.status(404).send([])
+    }else{
+      res.send(songs)
+    }
+  }catch(err) {
+    res.status(404);
+  }
+})
+
+app.get("/api/songs/genres", async (req, res) => {
+  try{
+    const genres = await genre();
+    if (!genres || !genres.length){
+      res.status(404).send([])
+    }else{
+      res.send(genres)
+    }
+  }catch(err) {
+    res.status(404);
   }
 })
 
