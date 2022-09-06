@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { useRef } from "react";
 import { clearStorage, saveToStorage } from "../Services/LocalService";
+import Login from "./Login";
 
 export default class LoginModal extends Component {
   constructor(props) {
@@ -33,7 +34,7 @@ export default class LoginModal extends Component {
       <div>
         <button
           type="button"
-          className="btn btn-primary"
+          className="button"
           onClick={this.showModal}
         >
           Login
@@ -44,7 +45,7 @@ export default class LoginModal extends Component {
           ref={this.modal}
           style={{
             display: "none",
-            backgroundColor: "rgb(214, 214, 214, 0.5)",
+            backgroundColor: "rgb(100, 100, 100, 0.5)",
           }}
           id="exampleModal"
           tabIndex="-1"
@@ -52,33 +53,23 @@ export default class LoginModal extends Component {
           aria-labelledby="exampleModalLabel"
           aria-hidden="true"
         >
-          <div className="modal-dialog modal-dialog-centered" role="document">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title" id="exampleModalLabel">
-                  Login
-                </h5>
-                <button
+          <div className="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div className="modal-content bg-spotimy">
+            <button
                   type="button"
                   className="close"
                   data-dismiss="modal"
                   aria-label="Close"
                   onClick={this.closeModal}
+                  style={{float:'right'}}
                 >
                   <span aria-hidden="true">&times;</span>
                 </button>
-              </div>
-              <div className="modal-body">
-                <p>user name:</p>
-                <input type="text" name="userName" value={this.state.userName} onChange={this.onChange}/>
-                <p>password</p>
-                <input type="text" name="password" value={this.state.password} onChange={this.onChange}/>
-              </div>
-              <div className="modal-footer">
-                <button type="button" className="btn btn-primary" onClick={this.onLogin}>
-                  Login
-                </button>
-              </div>
+              <Login
+                userNameValue={this.state.userName} userNameOnChange={this.onChange}
+                passwordValue={this.state.password} passwordOnChange={this.onChange}
+                onLogin={this.onLogin}
+              />
             </div>
           </div>
         </div>
