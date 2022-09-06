@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { useRef } from "react";
 import { clearStorage, saveToStorage } from "../Services/LocalService";
 import Login from "./Login";
+import $ from 'jquery'; 
 
 export default class LoginModal extends Component {
   constructor(props) {
@@ -40,12 +41,12 @@ export default class LoginModal extends Component {
 
         <div
           className="modal"
+          id="modal"
           ref={this.modal}
           style={{
             display: "none",
             backgroundColor: "rgb(100, 100, 100, 0.5)",
           }}
-          id="exampleModal"
           tabIndex="-1"
           role="dialog"
           aria-labelledby="exampleModalLabel"
@@ -59,10 +60,9 @@ export default class LoginModal extends Component {
                   data-dismiss="modal"
                   aria-label="Close"
                   onClick={this.closeModal}
-                  style={{float:'right'}}
                 >
                   <span aria-hidden="true">&times;</span>
-                </button>
+        </button>
               <Login
                 userNameValue={this.state.userName} userNameOnChange={this.onChange}
                 passwordValue={this.state.password} passwordOnChange={this.onChange}
