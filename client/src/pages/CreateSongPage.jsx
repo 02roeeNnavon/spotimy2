@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { postSong } from "../Services/songService";
 import { useNavigate } from "react-router-dom";
+import { FaMenorah } from "react-icons/fa";
 
 class CreateSongPage extends Component {
   handleSubmit = (e) => {
@@ -69,24 +70,16 @@ class CreateSongPage extends Component {
             />
 
             <div className="w-75 mx-auto">
-              <input type="submit" value="Submit" className="mx-auto my-2 " />
+              <input type="submit" className="mx-auto my-2 btn bg-success text-white" />
             </div>
           </div>
-          <div class="file-upload-wrapper">
+          <div className="file-upload-wrapper">
             <p>audio file</p>
-            <input
-              type="file"
-              name="audioFile"
-              class="file-upload"
-            />
+            <input type="file" name="audioFile" className="file-upload" />
           </div>
-          <div class="file-upload-wrapper">
-          <p>image file</p>
-            <input
-              type="file"
-            name="imageFile"
-              class="file-upload"
-            />
+          <div className="file-upload-wrapper">
+            <p>image file</p>
+            <input type="file" name="imageFile" className="file-upload" />
           </div>
         </div>
       </form>

@@ -12,8 +12,9 @@ const {
   getUser,
   createNewUser,
   fillter,
-  genre,
-} = require("./queries");
+  genre
+} = require("./queries.js");
+
 const fs = require("fs");
 const app = express();
 app.use(cors());
@@ -119,7 +120,7 @@ app.post("/api/songs/register", async (req, res) => {
       username,
       password,
     };
-    await getUser(newUser);
+    await createNewUser(newUser);
     res.send({ status: "success" });
   } catch (err) {
     console.log(err);
