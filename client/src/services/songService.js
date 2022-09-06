@@ -15,7 +15,7 @@ export async function search(value){
     return res.json();
 }
 export async function postSong(song) {
-    const res = await fetch(`http://${apiHost}/api`, {
+    const res = await fetch(`http://${apiHost}/api/addsong`, {
 		method: 'POST',
 		headers: {'Content-Type': 'application/json'},
 		body: JSON.stringify(song)
