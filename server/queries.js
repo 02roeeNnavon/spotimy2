@@ -21,11 +21,21 @@ async function deleteSongById(id) {
   return;
 }
 
-async function search(value){
+async function search(value,fillter){
   value = value.toLowerCase();
-  const songs = await getData(`SELECT * FROM t_songs WHERE LOWER(name) LIKE '%${value}%'`);
-  console.log()
+  const songs = await getData(`SELECT * FROM t_songs WHERE LOWER(${fillter}) LIKE '%${value}%'`);
   return songs.rows;
+}
+
+async function fillter(value){
+  const songs = await getData(`SELECT * FROM t_songs WHERE genre = '${value}'`)
+  console.log('hello1');
+  return songs.rows;
+}
+
+async function genre(){
+  const genre = await getData(`SELECT DISTINCT genre FROM t_songs`)
+  return genre.rows;
 }
 
 module.exports = {
@@ -34,4 +44,6 @@ module.exports = {
   createNewSong,
   deleteSongById,
   search,
+  fillter,
+  genre,
 };
