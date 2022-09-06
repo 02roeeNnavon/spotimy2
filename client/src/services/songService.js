@@ -9,9 +9,18 @@ export async function getAllSongs() {
     const res = await fetch(`http://${apiHost}/api/songs/`);
     return res.json();
 }
-export async function search(value){
-    console.log(value);
-    const res = await fetch(`http://${apiHost}/api/songs/search/${value}`)
+export async function search(value,fillter){
+    const res = await fetch(`http://${apiHost}/api/songs/search/${fillter}/${value}`)
+    return res.json();
+}
+
+export async function fillter(value){
+    const res = await fetch(`http://${apiHost}/api/songs/fillter/${value}`)
+    return res.json();
+}
+
+export async function genres(){
+    const res = await fetch(`http://${apiHost}/api/songs/genres`)
     return res.json();
 }
 export async function postSong(song) {

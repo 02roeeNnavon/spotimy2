@@ -11,7 +11,7 @@ function AboutPerson(props) {
             />
             <div className="card-body">
                 <h5 className="card-title text-defult">{props.name}</h5>
-                <p className="card-text text-defult">{props.about}</p>
+                <p className="card-text text-defult">{props.children}</p>
             </div>
         </div>
     );
@@ -57,19 +57,16 @@ export default class About extends Component {
                 <div className="row justify-content-around mt-5">
                     <AboutPerson
                         name="Ariel Slavinsky"
-                        about="text about me..."
                         img="/Assets/images/ariel.jpg"
-                    />
+                    ><b className="text-set">SET</b></AboutPerson>
                     <AboutPerson
                         name="Roee Navon"
-                        about="text about me..."
                         img="/Assets/images/roee.jpg"
-                    />
+                    >I like philosophy <br/> "god is dead" -- Nietzsche, 1882 <br/> "Nietzsche is dead" -- god, 1900  </AboutPerson>
                     <AboutPerson
                         name="Ron Perelman"
-                        about="text about me..."
                         img="/Assets/images/ron.jpg"
-                    />
+                    >so i was chillaxin in my room like a balla'</AboutPerson>
                 </div>
                 <div className="row justify-content-center mt-5">
                     <canvas className="w-75 h-75" ref="rm"></canvas>
