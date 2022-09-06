@@ -12,8 +12,16 @@ const {
 } = require("./queries");
 const fs = require("fs");
 const app = express();
-app.use(express.json());
 app.use(cors());
+app.use(function(req, res, next) {
+	res.setHeader('Access-Control-Allow-Origin', '*');
+	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+	res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+	res.setHeader('Access-Control-Allow-Credentials', true);
+	next();
+});
+app.use(express.json({limit: '5000mb'}));
+app.use(express.urlencoded({limit: '5000mb'}));
 
 //get all apps
 app.get("/api/songs", async (req, res) => {
@@ -21,7 +29,7 @@ app.get("/api/songs", async (req, res) => {
     const songs = await getAllSongs();
 
     if (!songs || !songs.length) {
-      res.status(404).send(`songs do not exist`);
+      res.status(404).send({status: 'error: song not found'});
     } else {
       res.send(songs);
     }
@@ -52,7 +60,7 @@ app.get("/api/songs/:id", async (req, res) => {
     const requestedSong = await getSongById(songId);
 
     if (!requestedSong) {
-      res.status(404).send(`song ${songId} not found`);
+      res.status(404).send({status: 'error: song not found'});
     } else {
       res.send(requestedSong);
     }
@@ -69,18 +77,19 @@ app.post("/api/addsong", async (req, res) => {
     const newSong = {
       name,
       id: id,
-      songurl: `../client/Assets/audioFiles/${id}`,
+      songurl: `/Assets/audioFiles/${id}`,
       genre,
-      imageUrl: `../client/Assets/images/${id}`,
+      imageurl: `/Assets/images/${id}`,
       singer,
     };
     
-    fs.writeFileSync(newSong.songurl, audioBuffer, 'binary', function (err) {});
-    fs.writeFileSync(newSong.imageUrl, imageBuffer, 'binary', function (err) {});
+    fs.writeFileSync(`../client/public/Assets/audioFiles/${id}`, new Buffer(audioBuffer, 'base64'), 'binary', function (err) {});
+    fs.writeFileSync(`../client/public/Assets/images/${id}`, new Buffer(imageBuffer, 'base64'), 'binary', function (err) {});
 
     await createNewSong(newSong);
-    res.send("song has been added");
+    res.send({status: 'success'});
   } catch (err) {
+    console.log(err);
     res.send(err);
   }
 });
@@ -90,7 +99,7 @@ app.delete("/api/deletesong/:id", async (req, res) => {
   try {
     const songId = req.params.id;
     await deleteSongById(songId);
-    res.send("song has been removed");
+    res.send({status: 'success'});
   } catch (err) {
     res.send(err);
   }
@@ -106,7 +115,7 @@ app.listen(PORT, function (err) {
 
 app.use(express.static(path.resolve(__dirname, "../client/build")));
 
-const indexPath = path.join(__dirname, "../client/build/index.html");
-app.get("*", (req, res) => {
-  res.sendFile(indexPath);
-});
+//const indexPath = path.join(__dirname, "../client/build/index.html");
+//app.get("*", (req, res) => {
+//  res.sendFile(indexPath);
+//});
