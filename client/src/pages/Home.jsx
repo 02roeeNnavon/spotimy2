@@ -30,7 +30,7 @@ export default class home extends Component {
   render() {
     return (
       <div className=' home-page bg-spotimy'>
-        <div className='row justify-content-center'>
+        <div className='row justify-content-center w-100'>
         <SearchBar className="col-3" onSearch={this.onSearch} fillter="name"></SearchBar>
         <Fillter className="col-3" onFillter={this.onFillter}></Fillter>
         </div>
