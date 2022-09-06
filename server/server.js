@@ -9,19 +9,21 @@ const {
   createNewSong,
   deleteSongById,
   search,
+  getUser,
+  createNewUser,
 } = require("./queries");
 const fs = require("fs");
 const app = express();
 app.use(cors());
-app.use(function(req, res, next) {
-	res.setHeader('Access-Control-Allow-Origin', '*');
-	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-	res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-	res.setHeader('Access-Control-Allow-Credentials', true);
-	next();
+app.use(function (req, res, next) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  res.setHeader("Access-Control-Allow-Credentials", true);
+  next();
 });
-app.use(express.json({limit: '5000mb'}));
-app.use(express.urlencoded({limit: '5000mb'}));
+app.use(express.json({ limit: "5000mb" }));
+app.use(express.urlencoded({ limit: "5000mb" }));
 
 //get all apps
 app.get("/api/songs", async (req, res) => {
@@ -29,7 +31,7 @@ app.get("/api/songs", async (req, res) => {
     const songs = await getAllSongs();
 
     if (!songs || !songs.length) {
-      res.status(404).send({status: 'error: song not found'});
+      res.status(404).send({ status: "error: song not found" });
     } else {
       res.send(songs);
     }
@@ -41,17 +43,15 @@ app.get("/api/songs", async (req, res) => {
 app.get("/api/songs/search/:value", async (req, res) => {
   try {
     const songs = await search(req.params.value);
-    if (!songs || !songs.length){
-      res.status(404).send([])
+    if (!songs || !songs.length) {
+      res.status(404).send([]);
+    } else {
+      res.send(songs);
     }
-    else{
-      res.send(songs)
-    }
-  } 
-  catch (err) {
-    res.status(404)
+  } catch (err) {
+    res.status(404);
   }
-})
+});
 
 //get specific song id
 app.get("/api/songs/:id", async (req, res) => {
@@ -60,11 +60,40 @@ app.get("/api/songs/:id", async (req, res) => {
     const requestedSong = await getSongById(songId);
 
     if (!requestedSong) {
-      res.status(404).send({status: 'error: song not found'});
+      res.status(404).send({ status: "error: song not found" });
     } else {
       res.send(requestedSong);
     }
   } catch (err) {
+    res.send(err);
+  }
+});
+
+app.post("/api/songs/login", async (req, res) => {
+  try {
+    const { username, password } = req.body;
+    const reqUser = await getUser(username, password);
+    if (!reqUser || !reqUser.length) {
+      res.status(404).send({ status: "error: user not found" });
+    } else {
+      res.send(reqUser);
+    }
+  } catch (err) {
+    res.send(err);
+  }
+});
+
+app.post("/api/songs/register", async (req, res) => {
+  const { username, password } = req.body;
+  try {
+    const newUser = {
+      username,
+      password,
+    };
+    await getUser(newUser);
+    res.send({ status: "success" });
+  } catch (err) {
+    console.log(err);
     res.send(err);
   }
 });
@@ -82,12 +111,22 @@ app.post("/api/addsong", async (req, res) => {
       imageurl: `/Assets/images/${id}`,
       singer,
     };
-    
-    fs.writeFileSync(`../client/public/Assets/audioFiles/${id}`, new Buffer(audioBuffer, 'base64'), 'binary', function (err) {});
-    fs.writeFileSync(`../client/public/Assets/images/${id}`, new Buffer(imageBuffer, 'base64'), 'binary', function (err) {});
+
+    fs.writeFileSync(
+      `../client/public/Assets/audioFiles/${id}`,
+      new Buffer(audioBuffer, "base64"),
+      "binary",
+      function (err) {}
+    );
+    fs.writeFileSync(
+      `../client/public/Assets/images/${id}`,
+      new Buffer(imageBuffer, "base64"),
+      "binary",
+      function (err) {}
+    );
 
     await createNewSong(newSong);
-    res.send({status: 'success'});
+    res.send({ status: "success" });
   } catch (err) {
     console.log(err);
     res.send(err);
@@ -99,7 +138,7 @@ app.delete("/api/deletesong/:id", async (req, res) => {
   try {
     const songId = req.params.id;
     await deleteSongById(songId);
-    res.send({status: 'success'});
+    res.send({ status: "success" });
   } catch (err) {
     res.send(err);
   }
