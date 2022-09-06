@@ -20,12 +20,14 @@ export default class LoginModal extends Component {
     this.setState({[event.target.name]:event.target.value})
   }
   onLogin = (event) => {
-    if (this.state.userName = 'admin' && this.state.password == '1234'){
+    if (this.state.userName === 'admin' & this.state.password === '1234'){
         saveToStorage('user',{userName:'admin',password:'1234',status:'admin'})
     }
     else{
+        console.log('hello')
         clearStorage('user')
     }
+    this.props.update();
     this.closeModal();
   } 
   render() {
