@@ -28,6 +28,12 @@ export default function SiteHeader(props) {
                         <span className="sr-only"></span>
                         </Link>
                     </li>
+                    <li className="nav-item active">
+                        <Link className="nav-link text-defult" to="/addSong">
+                        {props.page == "addSong" ? <b>create page</b> : "add Song"}{" "}
+                        <span className="sr-only"></span>
+                        </Link>
+                    </li>
                 </ul>
             </div>
         </nav>

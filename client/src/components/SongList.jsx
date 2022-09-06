@@ -24,6 +24,7 @@ export default class SongList extends Component {
       saveToStorage("likedSongs", likedStorage);
     }
     this.setState({liked:loadFromStorage("likedSongs")});
+    if(this.props.onLike) this.props.onLike(id);
   };
 
   isInLiked(id) {

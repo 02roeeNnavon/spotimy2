@@ -62,14 +62,14 @@ app.get("/api/songs/:id", async (req, res) => {
 
 //create song
 app.post("/api/addsong", async (req, res) => {
-  const { name, songurl, genre, imageUrl, singer } = req.body;
+  const { name, genre, singer } = req.body;
   try {
     const newSong = {
       name,
       id: makeId(6),
-      songurl,
+      songurl:"../Assets/audioFiles/" + id,
       genre,
-      imageUrl,
+      imageUrl: "../Assets/images/" + id,
       singer,
     };
     await createNewSong(newSong);

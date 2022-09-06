@@ -1,6 +1,6 @@
 import { loadFromStorage } from "../Services/LocalService";
 import React, { Component } from "react";
-import { getAllSongs, getSongById } from "../Services/songService";
+import { getSongById } from "../Services/songService";
 import SongList from "../components/SongList";
 
 export default class LikesPages extends Component {
@@ -11,11 +11,11 @@ export default class LikesPages extends Component {
 
   updateLikedSongs = async () => {
     const promiseArr =
-    loadFromStorage("likedSongs")?.map((songId) => {
-      return getSongById(songId);
-    }) || [];
+      loadFromStorage("likedSongs")?.map((songId) => {
+        return getSongById(songId);
+      }) || [];
     this.setState({ songs: await Promise.all(promiseArr) });
-  }
+  };
 
   async componentDidMount() {
     this.updateLikedSongs();
@@ -23,7 +23,7 @@ export default class LikesPages extends Component {
 
   onLike = async () => {
     this.updateLikedSongs();
-  }
+  };
 
   render() {
     return (
