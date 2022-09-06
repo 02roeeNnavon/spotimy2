@@ -12,6 +12,7 @@ const {
   fillter,
   genre,
 } = require("./queries");
+const fs = require("fs");
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -90,16 +91,21 @@ app.get("/api/songs/:id", async (req, res) => {
 
 //create song
 app.post("/api/addsong", async (req, res) => {
-  const { name, songurl, genre, imageUrl, singer } = req.body;
+  const { name, audioBuffer, genre, imageBuffer, singer } = req.body;
+  const id = makeId(6);
   try {
     const newSong = {
       name,
-      id: makeId(6),
-      songurl,
+      id: id,
+      songurl: `../client/Assets/audioFiles/${id}`,
       genre,
-      imageUrl,
+      imageUrl: `../client/Assets/images/${id}`,
       singer,
     };
+    
+    fs.writeFileSync(newSong.songurl, audioBuffer, 'binary', function (err) {});
+    fs.writeFileSync(newSong.imageUrl, imageBuffer, 'binary', function (err) {});
+
     await createNewSong(newSong);
     res.send("song has been added");
   } catch (err) {
