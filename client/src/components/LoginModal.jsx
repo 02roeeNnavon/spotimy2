@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { useRef } from "react";
 import { clearStorage, saveToStorage } from "../Services/LocalService";
 import Login from "./Login";
+import { loginUser } from "../Services/userService";
 
 export default class LoginModal extends Component {
   constructor(props) {
@@ -19,13 +20,12 @@ export default class LoginModal extends Component {
     this.setState({[event.target.name]:event.target.value})
   }
   onLogin = (event) => {
-    if (this.state.userName === 'admin' & this.state.password === '1234'){
-        saveToStorage('user',{userName:'admin',password:'1234',status:'admin'})
-    }
-    else{
-        console.log('hello')
+      try{
+        saveToStorage('user',loginUser({userName:this.state.userName,password:this.state.password}))
+      }
+      catch(err){
         clearStorage('user')
-    }
+      }
     this.props.update();
     this.closeModal();
   } 
