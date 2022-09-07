@@ -18,7 +18,7 @@ export default class Login extends Component {
                                 <div className="form-outline mb-4 pt-5">
                                     <input
                                         type="text"
-                                        name="userName"
+                                        name="username"
                                         id="form3Example3"
                                         className="form-control form-control-lg"
                                         placeholder="Enter a user name"
@@ -73,7 +73,7 @@ export default class Login extends Component {
                 </div>
                 <div className="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
                     <div className="text-white mb-3 mb-md-0">
-                        Pukirights © 2022. All rights reserved.
+                        Roim rachok © 2022. All rights reserved.
                     </div>
                     <div>
                         <a href="#!" className="text-white me-4">

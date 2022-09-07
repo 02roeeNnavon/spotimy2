@@ -14,12 +14,12 @@ function App() {
       <SiteHeader page="Home" />
       <Routes>
         <Route path="/About" element={<About />} />
-        <Route path="/" element = {<Home />} />
-        <Route path="/addSong" element = {<CreateSongPage />} />
-        <Route path="/Song/:id" element = {<SongPage/>}/>
-        <Route path="/SongLiked" element = {<LikesPages/>}/>
+        <Route path="/" element={<Home />} />
+        <Route path="/addSong" element={<CreateSongPage />} />
+        <Route path="/Song/:id" element={<SongPage />} />
+        <Route path="/SongLiked" element={<LikesPages />} />
       </Routes>
-      
+
       <SiteFooter />
     </div>
   );

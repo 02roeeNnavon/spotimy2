@@ -1,11 +1,12 @@
 const { Pool, Client } = require("pg");
+const config = require('./config')
 
 let pool = new Pool({
-    host: "localhost",
-    user: "postgres",
-    port: 5432,
-    password: "Aa123456",
-    database: "postgres",
+    host: config.pgHost,
+    user: config.pgUser,
+    port: config.pgPort,
+    password: config.pgPassword,
+    database: config.pgDatabase,
   });
 
 async function getData(query) {
