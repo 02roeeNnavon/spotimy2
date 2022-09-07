@@ -2,7 +2,12 @@ const express = require("express");
 const cors = require("cors");
 const path = require("path");
 const { makeId } = require("./util.js");
-const PORT = 3000;
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
+
+const config = require("./config");
+const PORT = config.port;
 const {
   getAllSongs,
   getSongById,
@@ -12,7 +17,7 @@ const {
   getUser,
   createNewUser,
   fillter,
-  genre
+  genre,
 } = require("./queries.js");
 
 const fs = require("fs");
@@ -45,12 +50,11 @@ app.get("/api/songs", async (req, res) => {
 
 app.get("/api/songs/search/:fillter/:value", async (req, res) => {
   try {
-    const songs = await search(req.params.value,req.params.fillter);
-    if (!songs || !songs.length){
-      res.status(404).send([])
-    }
-    else{
-      res.send(songs)
+    const songs = await search(req.params.value, req.params.fillter);
+    if (!songs || !songs.length) {
+      res.status(404).send([]);
+    } else {
+      res.send(songs);
     }
   } catch (err) {
     res.status(404);
@@ -58,30 +62,30 @@ app.get("/api/songs/search/:fillter/:value", async (req, res) => {
 });
 
 app.get("/api/songs/fillter/:value", async (req, res) => {
-  try{
+  try {
     const songs = await fillter(req.params.value);
-    if (!songs || !songs.length){
-      res.status(404).send([])
-    }else{
-      res.send(songs)
+    if (!songs || !songs.length) {
+      res.status(404).send([]);
+    } else {
+      res.send(songs);
     }
-  }catch(err) {
+  } catch (err) {
     res.status(404);
   }
-})
+});
 
 app.get("/api/songs/genres", async (req, res) => {
-  try{
+  try {
     const genres = await genre();
-    if (!genres || !genres.length){
-      res.status(404).send([])
-    }else{
-      res.send(genres)
+    if (!genres || !genres.length) {
+      res.status(404).send([]);
+    } else {
+      res.send(genres);
     }
-  }catch(err) {
+  } catch (err) {
     res.status(404);
   }
-})
+});
 
 //get specific song id
 app.get("/api/songs/:id", async (req, res) => {
@@ -179,12 +183,13 @@ app.listen(PORT, function (err) {
   if (err) {
     console.log("Error in server setup");
   }
+  console.log("PORT IS COMING? " + process.env.PORT);
   console.log("Server listening on Port", PORT);
 });
 
 app.use(express.static(path.resolve(__dirname, "../client/build")));
 
-//const indexPath = path.join(__dirname, "../client/build/index.html");
-//app.get("*", (req, res) => {
-//  res.sendFile(indexPath);
-//});
+const indexPath = path.join(__dirname, "../client/build/index.html");
+app.get("*", (req, res) => {
+  res.sendFile(indexPath);
+});
