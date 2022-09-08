@@ -147,13 +147,13 @@ app.post("/api/addsong", async (req, res) => {
     };
 
     fs.writeFileSync(
-      `../client/public/Assets/audioFiles/${id}`,
+      `../client/build/Assets/audioFiles/${id}`,
       new Buffer(audioBuffer, "base64"),
       "binary",
       function (err) {}
     );
     fs.writeFileSync(
-      `../client/public/Assets/images/${id}`,
+      `../client/build/Assets/images/${id}`,
       new Buffer(imageBuffer, "base64"),
       "binary",
       function (err) {}

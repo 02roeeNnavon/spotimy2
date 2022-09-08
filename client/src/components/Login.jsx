@@ -64,7 +64,7 @@ export default class Login extends Component {
                                     </button>
                                     <p className="small fw-bold mt-2 pt-1 mb-0">
                                         Don't have an account?{" "}
-                                        <a href="#!">Register</a>
+                                        <a onClick={() => {window.alert('Error 418: i\'m a teapot.')}}>Register</a>
                                     </p>
                                 </div>
                             </form>
