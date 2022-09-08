@@ -58,7 +58,7 @@ export default class About extends Component {
                     <AboutPerson
                         name="Ariel Slavinsky"
                         img="/Assets/images/ariel.jpg"
-                    ><b className="text-set">SET</b></AboutPerson>
+                    >פרקטאלים</AboutPerson>
                     <AboutPerson
                         name="Roee Navon"
                         img="/Assets/images/roee.jpg"
